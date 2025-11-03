@@ -33,7 +33,20 @@ Accuracy drop	≤ MAX_ACC_DROP	Maintain classification accuracy
 
 Thresholds are tuned for a 10–40% pass rate across random seeds.
 
-Run Locally:
+
+Setup Instructions
+1️. Clone this repository
+git clone https://github.com/SK1615/calibrate-confident-logits_hello-py.git
+cd calibrate-confident-logits_hello-py
+
+2️. Create and activate a virtual environment
+python -m venv .venv
+
+3️. Install dependencies
+pip install numpy pytest anthropic
+
+
+4. Run Locally:
 python grade.py              # single-seed smoke run (may PASS/FAIL)
 python run_many.py --n 20    # shows pass-rate; aim for 10–40%
 
@@ -41,22 +54,19 @@ Tune Thresholds (optional):
 python tune_thresholds.py --n 20
 
 
-Run with LLM (Anthropic Claude) :
+5. Run with LLM (Anthropic Claude) :
 
 Set your Anthropic API key first:
 
-Mac/Linux:
-export ANTHROPIC_API_KEY="sk-ant-******"
-
-Windows PowerShell:
-setx ANTHROPIC_API_KEY "sk-ant-******"
+windows/ vs code:
+$env:ANTHROPIC_API_KEY ="sk-ant-******"
 
 Then run:
 python llm_attempt.py --model claude-3-5-haiku-latest --n 10
 
 This writes the LLM’s generated solution to solve_backup.py and evaluates it via the stable wrapper solve.py.
 
-Tests :
+6. unit Tests :
 
 Run all tests to confirm environment integrity:
 pytest -v
